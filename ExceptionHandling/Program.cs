@@ -6,7 +6,7 @@ namespace ExceptionHandling
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Welcome To Exception Handling Program");
         }
     }
 }
