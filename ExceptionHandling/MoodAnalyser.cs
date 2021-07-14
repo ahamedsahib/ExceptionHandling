@@ -3,8 +3,12 @@ namespace ExceptionHandling
 {
     public class MoodAnalyser
     {
-        
-        public string AnalyseMood(string message)
+        string message;
+        public MoodAnalyser(string message)
+        {
+            this.message = message;
+        }
+        public string AnalyseMood()
         {
             if (message.ToLower().Contains("happy"))
             {
