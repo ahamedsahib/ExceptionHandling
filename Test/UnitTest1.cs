@@ -32,5 +32,17 @@ namespace Test
 
             Assert.AreEqual(actual, expected);
         }
+        [TestMethod]
+        public void GetNullException()
+        {
+            string message = null;
+            moodAnalyser = new MoodAnalyser(message);
+            string expected = "Happy";
+
+            string actual = moodAnalyser.AnalyseMood();
+
+            Assert.AreEqual(actual, expected);
+
+        }
     }
 }

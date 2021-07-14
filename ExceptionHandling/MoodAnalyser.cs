@@ -10,13 +10,20 @@ namespace ExceptionHandling
         }
         public string AnalyseMood()
         {
-            if (message.ToLower().Contains("happy"))
+            try
             {
-                return "happy";
+                if (message.ToLower().Contains("happy"))
+                {
+                    return "happy";
+                }
+                else
+                {
+                    return "sad";
+                }
             }
-            else
+            catch(NullReferenceException e)
             {
-                return "sad";
+                return "Happy";
             }
         }
     }
