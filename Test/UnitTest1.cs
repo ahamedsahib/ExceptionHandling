@@ -13,10 +13,10 @@ namespace Test
         {
             //AAA method
             string message = "I am in happy mood";
-            moodAnalyser = new MoodAnalyser();
+            moodAnalyser = new MoodAnalyser(message);
             string expected = "happy";
 
-            string actual=moodAnalyser.AnalyseMood(message);
+            string actual=moodAnalyser.AnalyseMood();
 
             Assert.AreEqual(actual, expected);
         }
@@ -25,10 +25,10 @@ namespace Test
         {
             //AAA method
             string message = "I am in Sad mood";
-            moodAnalyser = new MoodAnalyser();
+            moodAnalyser = new MoodAnalyser(message);
             string expected = "sad";
 
-            string actual = moodAnalyser.AnalyseMood(message);
+            string actual = moodAnalyser.AnalyseMood();
 
             Assert.AreEqual(actual, expected);
         }
