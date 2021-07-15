@@ -45,10 +45,10 @@ namespace Test
                 string msg = moodAnalyser.AnalyseMood();
                 
             }
-            catch (NullReferenceException ex)
+            catch (CustomMoodAnalyserException e)
             {
                 expected = "Mood can't be Null";
-                Assert.AreEqual(expected, ex.Message);
+                Assert.AreEqual(expected, e.Message);
 
             }
         }
@@ -68,6 +68,25 @@ namespace Test
                 string expected = "Mood can't be Empty";
                 Assert.AreEqual(expected, e.Message);
             }
+
+        }
+        [TestMethod]
+        public void ObjectCreationUsingDeafultConstructo()
+        {
+            MoodAnalyser expected = new MoodAnalyser();
+            Object obj = null;
+            //AAA method
+            try
+            {
+                MoodAnalyseFactory moodAnalyse = new MoodAnalyseFactory();
+                obj=moodAnalyse.CreateMoodAnalyserObject("ExceptionHandling.MoodAnalyser", "MoodAnalyser");
+  
+            }
+            catch (CustomMoodAnalyserException e)
+            {
+                throw new Exception(e.Message);
+            }
+            obj.Equals(expected);
 
         }
     }
