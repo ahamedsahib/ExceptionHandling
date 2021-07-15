@@ -12,7 +12,13 @@ namespace ExceptionHandling
         {
             try
             {
-                if (message.ToLower().Contains("happy"))
+
+                if (message.Equals(string.Empty))
+                {
+                    throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.EMPTY_EXCEPTION, "Mood can't be Empty");
+                }
+                else if (message.ToLower().Contains("happy"))
+
                 {
                     return "happy";
                 }
@@ -20,11 +26,15 @@ namespace ExceptionHandling
                 {
                     return "sad";
                 }
+
             }
-            catch(NullReferenceException e)
+          catch(NullReferenceException ex)
             {
-                return "Happy";
+                throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NULL_EXCEPTION, "Mood can't be Null");
+=
             }
+           
+            
         }
     }
 }

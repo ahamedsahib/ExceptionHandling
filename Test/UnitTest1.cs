@@ -1,4 +1,5 @@
-﻿using ExceptionHandling;
+﻿using System;
+using ExceptionHandling;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
@@ -7,7 +8,7 @@ namespace Test
     public class UnitTest1
     {
         MoodAnalyser moodAnalyser;
-        
+
         [TestMethod]
         public void GetHappyMoodStatus()
         {
@@ -16,7 +17,7 @@ namespace Test
             moodAnalyser = new MoodAnalyser(message);
             string expected = "happy";
 
-            string actual=moodAnalyser.AnalyseMood();
+            string actual = moodAnalyser.AnalyseMood();
 
             Assert.AreEqual(actual, expected);
         }
@@ -33,15 +34,41 @@ namespace Test
             Assert.AreEqual(actual, expected);
         }
         [TestMethod]
-        public void GetNullException()
+        public void GetNullReturnCustomException()
         {
-            string message = null;
-            moodAnalyser = new MoodAnalyser(message);
-            string expected = "Happy";
+            string expected;
+            //AAA method
+            try
+            {
+                string message = message = null;
+                moodAnalyser = new MoodAnalyser(message);
+                string msg = moodAnalyser.AnalyseMood();
+                
+            }
+            catch (NullReferenceException ex)
+            {
+                expected = "Mood can't be Null";
+                Assert.AreEqual(expected, ex.Message);
 
-            string actual = moodAnalyser.AnalyseMood();
+            }
+        }
+        [TestMethod]
+        public void GetEmptyReturnCustomException()
+        {
+            //AAA method
+            try
+            {
+                string message = "";
+                moodAnalyser = new MoodAnalyser(message);
+               String msg= moodAnalyser.AnalyseMood();
+               
+            }
+            catch (CustomMoodAnalyserException e)
+            {
+                string expected = "Mood can't be Empty";
+                Assert.AreEqual(expected, e.Message);
+            }
 
-            Assert.AreEqual(actual, expected);
 
         }
     }
