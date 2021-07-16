@@ -72,8 +72,13 @@ namespace Test
 
         }
         [TestMethod]
-        public void ObjectCreationUsingDeafultConstructo()
+        [TestCategory("DefaultConstructorReflection")]
+        public void ObjectCreationUsingDeafultConstructor()
         {
+          ///<summary>
+          ///TC1 Class Name and Constructor Name should be same
+          ///</summary>  
+
             MoodAnalyser expected = new MoodAnalyser();
             Object obj = null;
             //AAA method
@@ -89,6 +94,109 @@ namespace Test
             }
             obj.Equals(expected);
 
+        }
+        [TestMethod]
+        [TestCategory("DefaultConstructorReflection")]
+        public void ObjectCreationUsingDeafultConstructorReturnClassException()
+        {
+            ///<summary>
+            ///TC2 Class Name and Constructor Name should be differnet
+            ///</summary>  
+
+            MoodAnalyser expected = new MoodAnalyser();
+            Object obj = null;
+            //AAA method
+            try
+            {
+                MoodAnalyseFactory moodAnalyse = new MoodAnalyseFactory();
+                obj = moodAnalyse.CreateMoodAnalyserObject("ExceptionHandling.MoodAnalyse", "MoodAnalyse");
+
+            }
+            catch (CustomMoodAnalyserException e)
+            {
+                throw new Exception(e.Message);
+            }
+            obj.Equals(expected);
+
+        }
+        [TestMethod]
+        [TestCategory("DefaultConstructorReflection")]
+        public void ObjectCreationUsingDeafultConstructoReturnConstructorException()
+        {
+            ///<summary>
+            ///TC3 Class Name Not Found
+            ///</summary>  
+
+            MoodAnalyser expected = new MoodAnalyser();
+            Object obj = null;
+            //AAA method
+            try
+            {
+                MoodAnalyseFactory moodAnalyse = new MoodAnalyseFactory();
+                obj = moodAnalyse.CreateMoodAnalyserObject("ExceptionHandling.MoodAnalyse", "MoodAnalyser");
+
+            }
+            catch (CustomMoodAnalyserException e)
+            {
+                throw new Exception(e.Message);
+            }
+            obj.Equals(expected);
+        }
+        [TestMethod]
+        [TestCategory("ParameterizedConstructorReflection")]
+        public void GetReflectionReturnparameterizedConstructor()
+        {
+            //AAA method
+            Object obj = null;
+            string message = "I am in a happy mood";
+            MoodAnalyser expected = new MoodAnalyser(message);
+            try
+            {
+                MoodAnalyseFactory moodAnalyse = new MoodAnalyseFactory();
+                obj = moodAnalyse.CreateMoodAnalyserParameterizedObject("ExceptionHandling.MoodAnalyser", "MoodAnalyser", "I am in a happy mood");
+            }
+            catch (CustomMoodAnalyserException e)
+            {
+                throw new Exception(e.Message);
+            }
+            obj.Equals(expected);
+        }
+        [TestMethod]
+        [TestCategory("ParameterizedConstructorReflection")]
+        public void GetClassNotFoundExceptionUsingParameterizedConstructorReflection()
+        {
+            //AAA method
+            Object obj = null;
+            string message = "I am in a happy mood";
+            MoodAnalyser expected = new MoodAnalyser(message);
+            try
+            {
+                MoodAnalyseFactory moodAnalyse = new MoodAnalyseFactory();
+                obj = moodAnalyse.CreateMoodAnalyserParameterizedObject("ExceptionHandling.MoodAnalyse", "MoodAnalyse", "I am in a happy mood");
+            }
+            catch (CustomMoodAnalyserException e)
+            {
+                throw new Exception(e.Message);
+            }
+            obj.Equals(expected);
+        }
+        [TestMethod]
+        [TestCategory("ParameterizedConstructorReflection")]
+        public void GetConstructorNotFoundExceptionUsingParameterizedConstructorReflection()
+        {
+            //AAA method
+            Object obj = null;
+            string message = "I am in a happy mood";
+            MoodAnalyser expected = new MoodAnalyser(message);
+            try
+            {
+                MoodAnalyseFactory moodAnalyse = new MoodAnalyseFactory();
+                obj = moodAnalyse.CreateMoodAnalyserParameterizedObject("ExceptionHandling.MoodAnalyser", "MoodVerifier", "I am in a happy mood");
+            }
+            catch (CustomMoodAnalyserException e)
+            {                throw new Exception(e.Message);
+            }
+            obj.Equals(expected);
         }
     }
 }

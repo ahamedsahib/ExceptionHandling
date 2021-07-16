@@ -22,7 +22,6 @@ namespace ExceptionHandling
                     throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.EMPTY_EXCEPTION, "Mood can't be Empty");
                 }
                 else if (message.ToLower().Contains("happy"))
-
                 {
                     return "happy";
                 }
@@ -35,7 +34,7 @@ namespace ExceptionHandling
           catch(NullReferenceException ex)
             {
                 throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NULL_EXCEPTION, "Mood can't be Null");
-=
+
             }
            
             
