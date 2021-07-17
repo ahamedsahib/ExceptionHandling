@@ -57,5 +57,21 @@ namespace ExceptionHandling
             }
             
         }
+        public string InvokeMethod(string methodName, string message)
+        {
+            try
+            {
+                Type type = typeof(MoodAnalyser);
+                MethodInfo method = type.GetMethod(methodName);
+                MoodAnalyseFactory factory = new MoodAnalyseFactory();
+                object MoodAnalayserObject = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyser", "MoodAnalyser", message);
+                object MethodObject = method.Invoke(MoodAnalayserObject, null);
+                return MethodObject.ToString();
+            }
+            catch( NullReferenceException e)
+            {
+                throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "No such Method Error");
+            }
+        }
     }
 }
