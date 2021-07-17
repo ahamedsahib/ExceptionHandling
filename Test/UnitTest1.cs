@@ -146,6 +146,9 @@ namespace Test
         [TestCategory("ParameterizedConstructorReflection")]
         public void GetReflectionReturnparameterizedConstructor()
         {
+            ///<summary>
+            ///TC1 Class Name and Constructor Name should be same
+            ///</summary>  
             //AAA method
             Object obj = null;
             string message = "I am in a happy mood";
@@ -164,7 +167,10 @@ namespace Test
         [TestMethod]
         [TestCategory("ParameterizedConstructorReflection")]
         public void GetClassNotFoundExceptionUsingParameterizedConstructorReflection()
-        {
+        {  ///<summary>
+           ///TC2 Class Name Not Found
+           ///</summary>  
+            //AAA method
             //AAA method
             Object obj = null;
             string message = "I am in a happy mood";
@@ -184,6 +190,10 @@ namespace Test
         [TestCategory("ParameterizedConstructorReflection")]
         public void GetConstructorNotFoundExceptionUsingParameterizedConstructorReflection()
         {
+            ///<summary>
+            ///TC3 Class Name and Constructor Name should be Differnet
+            ///</summary>  
+            //AAA method
             //AAA method
             Object obj = null;
             string message = "I am in a happy mood";
@@ -197,6 +207,56 @@ namespace Test
             {                throw new Exception(e.Message);
             }
             obj.Equals(expected);
+        }
+        [TestMethod]
+        [TestCategory("InvokeMethodReflection")]
+        public void InvokeMethodUsingDynamicObject()
+        {
+            ///<summary>
+            ///TC1 Method Found and Invoked by object
+            ///</summary>  
+            //AAA method
+            //AAA method
+            string actual;
+            string message = "I am in a happy mood";
+            string methodName = "AnalyseMood";
+            string expected = "happy";
+            
+            try
+            {
+                MoodAnalyseFactory moodAnalyse = new MoodAnalyseFactory();
+                actual = moodAnalyse.InvokeMethod(methodName, message);
+            }
+            catch (CustomMoodAnalyserException e)
+            {
+                throw new Exception(e.Message);
+            }
+            actual.Equals(expected);
+        }
+        [TestMethod]
+        [TestCategory("InvokeMethodReflection")]
+        public void InvokeMethodUsingDynamicObjectReturnMthodNotFoundException()
+        {
+            ///<summary>
+            ///TC1 Method Found and Invoked by object
+            ///</summary>  
+            //AAA method
+            //AAA method
+            string actual;
+            string message = "I am in a happy mood";
+            string methodName = "Analyse";
+            string expected = "happy";
+
+            try
+            {
+                MoodAnalyseFactory moodAnalyse = new MoodAnalyseFactory();
+                actual = moodAnalyse.InvokeMethod(methodName, message);
+            }
+            catch (CustomMoodAnalyserException e)
+            {
+                throw new Exception(e.Message);
+            }
+            actual.Equals(expected);
         }
     }
 }
